@@ -1,0 +1,616 @@
+
+html,
+body {
+    background-color: lightblue;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #0066cc;
+}
+
+
+.main-logo {
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+main ul img {
+    max-width: 80px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+
+
+/* General page setup */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Full-screen homepage background */
+body {
+    min-height: 100vh;
+    background-color: #eaf5ff;
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.08),
+            rgba(0, 25, 70, 0.12)
+        ),
+        url("/images/service-network-hero.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+
+/* Navigation bar */
+nav {
+    background-color: rgba(0, 39, 85, 0.94);
+    padding: 18px 30px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #ffcc33;
+    color: #002755;
+}
+
+/* Homepage content */
+main {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px 50px;
+}
+
+/* Welcome message panel */
+main h1,
+main h2,
+main p {
+    max-width: 750px;
+}
+
+main h1 {
+    color: green;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 10px;
+}
+
+main h2 {
+    color: green;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
+main p {
+    color: green;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Main logo, if used elsewhere on the page */
+.main-logo {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    nav {
+        padding: 15px 10px;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    main {
+        padding: 20px 15px 30px;
+    }
+}
+
+
+/* Make the Service Network image fit the homepage */
+body:has(.homepage) {
+    padding: 0;
+    background: #eaf5ff;
+}
+
+.homepage {
+    width: 100%;
+    height: calc(100vh - 60px);
+    min-height: 300px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.service-network-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+
+
+/* HOMEPAGE HERO SECTION */
+
+.hero {
+    min-height: 550px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url("/images/service-network-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+    padding: 40px 8%;
+    box-sizing: border-box;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.hero-button {
+    display: inline-block;
+    background-color: #f39c12;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.hero-button:hover {
+    background-color: #d68910;
+}
+
+.home-intro {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.home-intro p {
+    max-width: 750px;
+    margin: 20px auto;
+    line-height: 1.7;
+}
+
+.main-logo {
+    max-width: 180px;
+    height: auto;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        min-height: 450px;
+        padding: 30px 6%;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+}
+
+
+/* ORGANIZATIONS PAGE */
+
+.page-container {
+    padding: 0;
+}
+
+.page-banner {
+    min-height: 300px;
+    background: linear-gradient(120deg, #12304A, #245578);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 50px 8%;
+    box-sizing: border-box;
+}
+
+.banner-content {
+    max-width: 750px;
+}
+
+.eyebrow {
+    color: #F39C12;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+}
+
+.page-banner h1 {
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+    margin: 15px 0;
+}
+
+.page-banner p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 650px;
+}
+
+.organizations-section {
+    padding: 65px 8%;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 45px;
+}
+
+.section-heading h2 {
+    color: #12304A;
+    font-size: 2rem;
+}
+
+.section-heading p {
+    color: #667085;
+    line-height: 1.7;
+}
+
+.organization-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.organization-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.organization-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.organization-image {
+    height: 190px;
+    background: #F5F7FA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.organization-image img {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+.organization-info {
+    padding: 25px;
+}
+
+.organization-tag {
+    display: inline-block;
+    color: #B66A00;
+    background: #FFF2D9;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.organization-info h3 {
+    color: #12304A;
+    margin: 18px 0 12px;
+    font-size: 1.25rem;
+}
+
+.organization-info p {
+    color: #667085;
+    line-height: 1.7;
+    min-height: 85px;
+}
+
+.contact-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #12304A;
+    font-weight: bold;
+    text-decoration: none;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 18px;
+    margin-top: 15px;
+}
+
+.contact-link:hover {
+    color: #F39C12;
+}
+
+.organization-cta {
+    text-align: center;
+    background: #EEF3F8;
+    padding: 55px 20px;
+}
+
+.organization-cta h2 {
+    color: #12304A;
+}
+
+.organization-cta p {
+    color: #667085;
+    margin-bottom: 25px;
+}
+
+.site-footer {
+    background: #12304A;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+    .organization-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .organization-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-banner {
+        min-height: 250px;
+        padding: 40px 6%;
+    }
+
+    .organizations-section {
+        padding: 45px 6%;
+    }
+
+    .organization-info p {
+        min-height: auto;
+    }
+}
+
+
+/* SERVICE PROJECTS PAGE */
+
+.projects-banner {
+    background: linear-gradient(
+        120deg,
+        #12304A,
+        #245578
+    );
+}
+
+.projects-section {
+    padding: 65px 8%;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.project-image {
+    height: 220px;
+    position: relative;
+    background: #E8EDF2;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-category {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: #F39C12;
+    color: #12304A;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-info h3 {
+    color: #12304A;
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.project-info p {
+    color: #667085;
+    line-height: 1.7;
+    min-height: 115px;
+}
+
+.project-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 18px;
+    margin-top: 15px;
+}
+
+.project-footer span {
+    color: #667085;
+    font-size: 0.8rem;
+}
+
+.project-footer a {
+    color: #12304A;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.project-footer a:hover {
+    color: #F39C12;
+}
+
+.projects-cta {
+    background: #EEF3F8;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.projects-cta h2 {
+    color: #12304A;
+    font-size: 2rem;
+}
+
+.projects-cta p {
+    color: #667085;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 15px auto 25px;
+}
+
+/* PROJECTS RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-section {
+        padding: 45px 6%;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-info p {
+        min-height: auto;
+    }
+
+    .project-image {
+        height: 210px;
+    }
+}
