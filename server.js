@@ -34,6 +34,14 @@ app.get('/projects', (req, res) => {
     res.render('projects', { title: 'Service Projects' });
 });
 
+
+// Categories route
+app.get('/categories', (req, res) => {
+    res.render('categories', {
+        title: 'Service Project Categories'
+    });
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running at http://127.0.0.1:${PORT}`);
