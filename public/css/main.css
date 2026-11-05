@@ -818,3 +818,15 @@ body:has(.homepage) {
     font-weight: bold;
     text-decoration: none;
 }
+
+
+.category-project-list {
+    margin-top: 15px;
+    padding-left: 20px;
+    line-height: 1.9;
+}
+
+.category-project-list li {
+    color: #555;
+    margin-bottom: 5px;
+}

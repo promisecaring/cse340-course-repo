@@ -2,7 +2,6 @@
 <%- include('partials/header', { title: 'Service Project Categories' }) %>
 
 <main>
-
     <section class="page-banner">
         <div class="container">
             <h1>Service Project Categories</h1>
@@ -14,61 +13,43 @@
     </section>
 
     <section class="container projects-section">
-
         <div class="section-heading">
             <h2>Explore Our Categories</h2>
             <p>Find a service opportunity that matches your interests.</p>
         </div>
 
         <div class="project-grid">
+            <% if (categories && categories.length > 0) { %>
 
-            <article class="project-card">
-                <div class="project-info">
-                    <span class="project-category">Environment</span>
-                    <h3>Environmental</h3>
-                    <p>
-                        Participate in activities that protect the environment,
-                        promote sustainability, and keep our communities clean.
-                    </p>
-                </div>
-            </article>
+                <% categories.forEach(category => { %>
+                    <article class="project-card">
+                        <div class="project-info">
+                            <span class="project-category">
+                                Service Category
+                            </span>
 
-            <article class="project-card">
-                <div class="project-info">
-                    <span class="project-category">Learning</span>
-                    <h3>Educational</h3>
-                    <p>
-                        Support learning through tutoring, mentoring,
-                        educational programs, and academic assistance.
-                    </p>
-                </div>
-            </article>
+                            <h3><%= category.name %></h3>
 
-            <article class="project-card">
-                <div class="project-info">
-                    <span class="project-category">Community</span>
-                    <h3>Community Service</h3>
-                    <p>
-                        Help strengthen communities through volunteering,
-                        outreach programs, and neighborhood improvement.
-                    </p>
-                </div>
-            </article>
+                            <% if (category.projects.length > 0) { %>
+                                <ul class="category-project-list">
+                                    <% category.projects.forEach(project => { %>
+                                        <li>
+                                            <%= project.title %>
+                                        </li>
+                                    <% }) %>
+                                </ul>
+                            <% } else { %>
+                                <p>No projects currently available.</p>
+                            <% } %>
+                        </div>
+                    </article>
+                <% }) %>
 
-            <article class="project-card">
-                <div class="project-info">
-                    <span class="project-category">Wellness</span>
-                    <h3>Health and Wellness</h3>
-                    <p>
-                        Promote healthier communities through wellness
-                        awareness, health education, and support initiatives.
-                    </p>
-                </div>
-            </article>
-
+            <% } else { %>
+                <p>No service categories are currently available.</p>
+            <% } %>
         </div>
     </section>
-
 </main>
 
 <%- include('partials/footer') %>

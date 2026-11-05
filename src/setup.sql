@@ -128,3 +128,77 @@ VALUES
  'Promote healthy living through community health education and awareness.',
  'Alimosho, Lagos', '2026-12-12');
 
+-- ========================================
+-- Categories Table
+-- ========================================
+
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- ========================================
+-- Project Category Junction Table
+-- ========================================
+
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_project_category_project
+        FOREIGN KEY (project_id)
+        REFERENCES service_project(project_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_project_category_category
+        FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+        ON DELETE CASCADE
+);
+
+-- ========================================
+-- Insert Sample Data: Categories
+-- ========================================
+
+INSERT INTO category (name)
+VALUES
+    ('Environmental'),
+    ('Educational'),
+    ('Community Development'),
+    ('Community Support'),
+    ('Health & Wellness')
+ON CONFLICT (name) DO NOTHING;
+
+-- ========================================
+-- Associate Projects with Categories
+-- ========================================
+
+INSERT INTO project_category (project_id, category_id)
+SELECT
+    sp.project_id,
+    c.category_id
+FROM (
+    VALUES
+        ('Community School Renovation', 'Educational'),
+        ('Community Road Improvement', 'Community Development'),
+        ('Public Library Construction', 'Educational'),
+        ('Safe Water Project', 'Environmental'),
+        ('Community Housing Support', 'Community Development'),
+        ('Community Garden Development', 'Environmental'),
+        ('Urban Farming Workshop', 'Environmental'),
+        ('Tree Planting Initiative', 'Environmental'),
+        ('Food Sustainability Campaign', 'Environmental'),
+        ('School Vegetable Garden', 'Educational'),
+        ('Community Park Cleanup', 'Environmental'),
+        ('Food Donation Drive', 'Community Support'),
+        ('Student Mentoring Program', 'Educational'),
+        ('Elderly Care Outreach', 'Community Support'),
+        ('Community Health Awareness', 'Health & Wellness')
+) AS project_data(project_title, category_name)
+JOIN service_project sp
+    ON sp.title = project_data.project_title
+JOIN category c
+    ON c.name = project_data.category_name
+ON CONFLICT (project_id, category_id) DO NOTHING;
