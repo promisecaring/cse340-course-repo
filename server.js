@@ -3,9 +3,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
-import { getAllOrganizations } from './src/models/organization-model.js';
-import { getAllProjects } from './src/models/projects.js';
-import { getAllCategories } from './src/models/categories.js';
+import router from './src/routes.js';
 
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
 const PORT = process.env.PORT || 3000;
@@ -21,41 +19,56 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 
-// Home route
-app.get('/', (req, res) => {
-    res.render('home', { title: 'Home' });
+// Middleware to log all incoming requests
+app.use((req, res, next) => {
+    if (NODE_ENV === 'development') {
+        console.log(`${req.method} ${req.url}`);
+    }
+    next();
 });
 
-// Organizations route
-app.get('/organizations', async (req, res) => {
-    const organizations = await getAllOrganizations();
-
-    res.render('organizations', {
-        title: 'Our Partner Organizations',
-        organizations
-    });
+// Middleware to make NODE_ENV available to all templates
+app.use((req, res, next) => {
+    res.locals.NODE_ENV = NODE_ENV;
+    next();
 });
 
-// Projects route
-app.get('/projects', async (req, res) => {
-    const projects = await getAllProjects();
+// Connect application routes
+app.use(router);
 
-    console.log('Service Projects Retrieved:', projects.length);
-
-    res.render('projects', {
-        title: 'Service Projects',
-        projects
-    });
+// Catch-all route for 404 errors
+app.use((req, res, next) => {
+    const err = new Error('Page Not Found');
+    err.status = 404;
+    next(err);
 });
 
+// Global error handler
+app.use((err, req, res, next) => {
 
-// Categories route
-app.get('/categories', async (req, res) => {
-    const categories = await getAllCategories();
+    // Log error details for debugging
+    console.error('Error occurred:', err.message);
+    console.error('Stack trace:', err.stack);
 
-    res.render('categories', {
-        title: 'Service Project Categories',
-        categories
+    // Determine status and template
+    const status = err.status || 500;
+    const template = status === 404 ? '404' : '500';
+
+    // Prepare data for the template
+    const context = {
+        title: status === 404 ? 'Page Not Found' : 'Server Error',
+        error: err.message,
+        stack: err.stack
+    };
+
+    // Render the appropriate error template
+    res.status(status).render(`errors/${template}`, context, (renderError, html) => {
+        if (renderError) {
+            console.error('Error rendering error page:', renderError);
+            return res.status(500).send('An unexpected server error occurred.');
+        }
+
+        res.send(html);
     });
 });
 
