@@ -1,0 +1,74 @@
+
+<%- include('partials/header', { title: title }) %>
+
+<main>
+    <section class="page-banner">
+        <div class="container">
+            <h1><%= projectDetails.title %></h1>
+            <p>
+                Learn more about this service opportunity
+                and how you can make a difference.
+            </p>
+        </div>
+    </section>
+
+    <section class="container projects-section">
+        <div class="section-heading">
+            <h2>Project Details</h2>
+        </div>
+
+        <article class="project-card">
+            <div class="project-info">
+
+                <span class="project-category">
+                    Service Project
+                </span>
+
+                <h3><%= projectDetails.title %></h3>
+
+                <p><%= projectDetails.description %></p>
+
+                <p>
+                    <strong>Organization:</strong>
+                    <a href="/organization/<%= projectDetails.organization_id %>">
+                        <%= projectDetails.organization_name %>
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    <%= projectDetails.location %>
+                </p>
+
+                <p>
+                    <strong>Project Date:</strong>
+                    <%= new Date(projectDetails.project_date).toLocaleDateString() %>
+                </p>
+
+                <h3>Project Categories</h3>
+
+                <% if (categories && categories.length > 0) { %>
+                    <div class="category-tags">
+                        <% categories.forEach(category => { %>
+                            <a
+                                href="/category/<%= category.category_id %>"
+                                class="project-category"
+                            >
+                                <%= category.name %>
+                            </a>
+                        <% }) %>
+                    </div>
+                <% } else { %>
+                    <p>No categories assigned to this project.</p>
+                <% } %>
+
+            </div>
+        </article>
+
+        <p>
+            <a href="/projects">← Back to All Projects</a>
+        </p>
+    </section>
+</main>
+
+<%- include('partials/footer') %>

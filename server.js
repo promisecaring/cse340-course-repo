@@ -1,4 +1,4 @@
-
+import 'dotenv/config';
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -35,6 +35,8 @@ app.use((req, res, next) => {
 
 // Connect application routes
 app.use(router);
+
+
 
 // Catch-all route for 404 errors
 app.use((req, res, next) => {

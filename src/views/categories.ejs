@@ -24,29 +24,37 @@
                 <% categories.forEach(category => { %>
                     <article class="project-card">
                         <div class="project-info">
+
                             <span class="project-category">
                                 Service Category
                             </span>
 
-                            <h3><%= category.name %></h3>
+                            <h3>
+                                <a href="/category/<%= category.category_id %>">
+                                    <%= category.name %>
+                                </a>
+                            </h3>
 
-                            <% if (category.projects.length > 0) { %>
-                                <ul class="category-project-list">
-                                    <% category.projects.forEach(project => { %>
-                                        <li>
-                                            <%= project.title %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                            <% } else { %>
-                                <p>No projects currently available.</p>
-                            <% } %>
+                            <p>
+                                Explore service projects available
+                                in this category.
+                            </p>
+
+                            <a
+                                href="/category/<%= category.category_id %>"
+                                class="btn"
+                            >
+                                View Projects
+                            </a>
+
                         </div>
                     </article>
                 <% }) %>
 
             <% } else { %>
+
                 <p>No service categories are currently available.</p>
+
             <% } %>
         </div>
     </section>

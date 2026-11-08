@@ -51,3 +51,31 @@ export async function getProjectsByOrganizationId(organizationId) {
         throw error;
     }
 }
+
+// Get details of one service project
+export async function getProjectDetails(projectId) {
+    try {
+        const query = `
+            SELECT
+                service_project.project_id,
+                service_project.organization_id,
+                service_project.title,
+                service_project.description,
+                service_project.location,
+                service_project.project_date,
+                organization.name AS organization_name
+            FROM service_project
+            JOIN organization
+                ON service_project.organization_id = organization.organization_id
+            WHERE service_project.project_id = $1;
+        `;
+
+        const queryParams = [projectId];
+        const result = await db.query(query, queryParams);
+
+        return result.rows[0];
+    } catch (error) {
+        console.error('Error retrieving project details:', error);
+        throw error;
+    }
+}
